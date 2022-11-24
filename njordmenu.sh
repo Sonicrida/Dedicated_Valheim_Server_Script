@@ -522,7 +522,7 @@ StartLimitInterval=60s
 StartLimitBurst=3
 User=steam
 Group=steam
-ExecStartPre=$steamexe +login anonymous +force_install_dir ${valheimInstallPath}/${worldname} +app_update 896660 validate +exit
+ExecStartPre=$steamexe +login anonymous +force_install_dir ${valheimInstallPath}/${worldname} +app_update 896660 validate -beta public-test -betapassword yesimadebackups +exit
 ExecStart=${valheimInstallPath}/${worldname}/start_valheim_${worldname}.sh
 ExecReload=/bin/kill -s HUP \$MAINPID
 KillSignal=SIGINT
@@ -968,7 +968,7 @@ function nocheck_valheim_update_install() {
 
 	tput setaf 1; echo "$INSTALL_BUILD_DOWNLOAD_INSTALL_STEAM_VALHEIM" ; tput setaf 9;
 	sleep 1
-	$steamexe +login anonymous +force_install_dir ${valheimInstallPath}/${worldname} +app_update 896660 validate +exit
+	$steamexe +login anonymous +force_install_dir ${valheimInstallPath}/${worldname} +app_update 896660 validate -beta public-test -betapassword yesimadebackups +exit
 	tput setaf 2; echo "$ECHO_DONE" ; tput setaf 9;
 }
 
@@ -993,7 +993,7 @@ $(ColorRed ''"$DRAW60"'')"
 	#if y, then continue, else cancel
 	if [ "$confirmOfficialUpdates" == "y" ]; then
 		tput setaf 2; echo "$FUNCTION_INSTALL_VALHEIM_UPDATE_APPLY_INFO" ; tput setaf 9; 
-		$steamexe +login anonymous +force_install_dir ${valheimInstallPath}/${worldname} +app_update 896660 validate +exit
+		$steamexe +login anonymous +force_install_dir ${valheimInstallPath}/${worldname} +app_update 896660 validate -beta public-test -betapassword yesimadebackups +exit
 		chown -R steam:steam ${valheimInstallPath}/${worldname}
 		echo ""
 	else
